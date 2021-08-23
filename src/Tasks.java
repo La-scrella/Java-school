@@ -1,10 +1,14 @@
+import java.text.DecimalFormat;
+import java.text.DecimalFormatSymbols;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 public class Tasks {
     public static void main(String[] args) {
         task1();
         task2();
+        task3();
     }
 
     public static void task1() {
@@ -39,5 +43,46 @@ public class Tasks {
         }
         point.setXY(0, 0); // изменение точки привязки
         figures.iterator().forEachRemaining(Figure::printPoints);
+    }
+
+    public static void task3() {
+        TemperatureConverter converter = new TemperatureConverter(0, TemperatureConverter.TemperatureScale.CELSIUS);
+        String helper = "Введите значение температуры или выбирите вид температурной шкалы '/n' " +
+                "(c - Цельсия, f - Фаренгейта, k - Кельвина), e - выход, h - справка";
+        System.out.println(helper);
+        Scanner in = new Scanner(System.in);
+//        String sep = DecimalFormatSymbols.getInstance(in.locale()).getDecimalSeparator() + "";
+        boolean stay = true;
+        while (stay) {
+//            String str = in.nextLine().toUpperCase().replaceAll(".", sep);
+//            str = str.replaceAll(",", sep);
+            if (in.hasNextDouble()) {
+                converter.setTempC(in.nextDouble());//Double.parseDouble()
+                converter.printTemparature();
+            } else {
+                String str = in.nextLine().toUpperCase();
+                if (str.length() == 1) {
+                    switch (str) {
+                        case "C":
+                        case "F":
+                        case "K":
+                            for (TemperatureConverter.TemperatureScale scale : TemperatureConverter.TemperatureScale.values()) {
+                                if (str.equals(scale.getTitle())) {
+                                    converter.setUnit(scale);
+                                    converter.printTemparature();
+                                    break;
+                                }
+                            }
+                            break;
+                        case "H":
+                            System.out.println(helper);
+                            break;
+                        case "E":
+                            stay = false;
+                            break;
+                    }
+                }
+            }
+        }
     }
 }
