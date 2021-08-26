@@ -1,15 +1,16 @@
 package Collections;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Consumer;
 
-public class Reverse<E> implements Iterator<E> {
+public class Reverse<E> implements Iterator<E>, Iterable<E> {
     private List<E> eList;
     private int position;
 
     public Reverse(List<E> list) {
-        eList = list;
+        eList = new ArrayList<>(list);
         position = eList.size() - 1;
     }
 
@@ -25,7 +26,7 @@ public class Reverse<E> implements Iterator<E> {
 
     @Override
     public void remove() {
-        eList.remove(position);
+        eList.remove(position--);
     }
 
     @Override
@@ -33,5 +34,11 @@ public class Reverse<E> implements Iterator<E> {
         while (hasNext()){
             action.accept(next());
         }
+    }
+
+    @Override
+    public Iterator<E> iterator() {
+        position = eList.size() - 1;
+        return this;
     }
 }

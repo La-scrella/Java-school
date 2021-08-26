@@ -88,7 +88,7 @@ public class Task2 {
         }
         System.out.println();
         Reverse<String> reverse = new Reverse<>(lines);
-        reverse.forEachRemaining(System.out::println);
+        reverse.forEach(System.out::println);
         Scanner in = new Scanner(System.in);
         System.out.println("Введите но мера строк от 1 до " + lines.size() + ":");
         List<Integer> numbers = new ArrayList<>();
