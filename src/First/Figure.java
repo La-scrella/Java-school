@@ -1,3 +1,7 @@
+package First;
+
+import First.Vector;
+
 import java.util.List;
 
 public abstract class Figure {

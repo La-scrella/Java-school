@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
+package First;
 
 public class Square extends Rectangle {
     public Square(Vector referencePoint, double sideSize) {
