@@ -75,8 +75,7 @@ public class Task2 {
         System.out.println("Число различных слов в файле: " + hashSet.size() + " / всего: " + words.size());
         List<String> sortable = new ArrayList<>(hashSet);
         sortable.sort(Comparator.comparing(o -> ((String) o).length()).thenComparing(o -> (String) o));
-        for (String el:
-                sortable) {
+        for (String el: sortable) {
             System.out.println(el + " (" + Collections.frequency(words, el) + ")");
         }
         Deque<String> deque = new ArrayDeque<>();

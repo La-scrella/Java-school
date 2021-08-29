@@ -1,0 +1,19 @@
+package Generics;
+
+public class A {
+    protected String name;
+    protected int value;
+
+    public A(String name, int value) {
+        this.name = name;
+        this.value = value;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}
